@@ -45,11 +45,11 @@ Generate an OWL ontology that represents:
 Write the resulting RDF/XML OWL file to the caller-requested output path. If no
 path is supplied, use:
 
-`out/ontologies/example_udv_ontology.owl`
+`out/ontologies/example_storage_ontology.owl`
 
 Also write a Turtle serialization beside the OWL file using the same base name,
 for example
-`out/ontologies/example_udv_ontology.ttl`.
+`out/ontologies/example_storage_ontology.ttl`.
 
 The OWL file is the required output. The Turtle file is a convenience copy and
 must represent the same graph.
@@ -133,7 +133,7 @@ different namespace, use:
 
 `https://example.com/fabric-ontology/`
 
-When the caller supplies an output name such as `example_udv_ontology`, preserve it
+When the caller supplies an output name such as `example_storage_ontology`, preserve it
 exactly under the requested output directory. Do not overwrite another
 ontology output merely because the default name is `ontology.owl`.
 
@@ -329,7 +329,7 @@ more input identifiers.
 Alongside the OWL and Turtle files, write a deterministic JSON mapping file with
 the same base name, for example:
 
-`out/ontologies/example_udv_ontology_mapping.json`
+`out/ontologies/example_storage_ontology_mapping.json`
 
 The mapping must contain:
 
@@ -400,7 +400,7 @@ Example:
 from pathlib import Path
 from owlready2 import get_ontology
 
-ontology_path = Path("out/ontologies/example_udv_ontology.owl").resolve()
+ontology_path = Path("out/ontologies/example_storage_ontology.owl").resolve()
 onto = get_ontology(str(ontology_path)).load()
 
 # Confirm the RDF/XML can be loaded and inspect the generated vocabulary.
@@ -451,11 +451,11 @@ before final validation so semantically identical graphs are also byte-stable.
 Write only the generated OWL RDF/XML content to the caller-requested output
 path. Derive the Turtle and mapping names from the OWL base name. For example,
 if the caller requests
-`out/ontologies/example_udv_specific/example_udv_specific_ontology.owl`, write:
+`out/ontologies/example_storage_specific/example_storage_specific_ontology.owl`, write:
 
-- `out/ontologies/example_udv_specific/example_udv_specific_ontology.owl`
-- `out/ontologies/example_udv_specific/example_udv_specific_ontology.ttl`
-- `out/ontologies/example_udv_specific/example_udv_specific_ontology_mapping.json`
+- `out/ontologies/example_storage_specific/example_storage_specific_ontology.owl`
+- `out/ontologies/example_storage_specific/example_storage_specific_ontology.ttl`
+- `out/ontologies/example_storage_specific/example_storage_specific_ontology_mapping.json`
 
 The caller-supplied directory and base name take precedence over defaults. Do
 not overwrite another ontology variant. Do not return prose, Markdown, JSON, or
@@ -506,7 +506,7 @@ use these defaults:
 ### Table and relationship metadata
 
 ```text
-inputs/lakehouse_tables/example_udv_tables.txt
+inputs/lakehouse_tables/example_storage_tables.txt
 ```
 
 ### Business rules and metrics

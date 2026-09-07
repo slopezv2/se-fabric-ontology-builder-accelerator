@@ -482,7 +482,7 @@ def generate(
             metric.generatedFrom = [str(rules_path)]
             metric.sourceReference = sorted(set(re.findall(r"`([^`]+)`", " | ".join(row))))
 
-        ontology.label = ["example UDV Fabric Ontology"]
+        ontology.label = ["example storage Fabric Ontology"]
         ontology.comment = [f"Generated from {metadata_path} and {rules_path}"]
         ontology.sourceFile = [str(metadata_path), str(rules_path)]
         generated_at = dt.datetime.fromtimestamp(
@@ -511,9 +511,9 @@ def generate(
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--metadata", type=Path, default=Path("inputs/lakehouse_tables/example_udv_tables.txt"))
+    parser.add_argument("--metadata", type=Path, default=Path("inputs/lakehouse_tables/example_storage_tables.txt"))
     parser.add_argument("--rules", type=Path, default=Path("out/business_rules/business_rules.md"))
-    parser.add_argument("--output", type=Path, default=Path("out/ontologies/example_udv_ontology.owl"))
+    parser.add_argument("--output", type=Path, default=Path("out/ontologies/example_storage_ontology.owl"))
     parser.add_argument("--mapping", type=Path)
     args = parser.parse_args()
     counts = generate(args.metadata, args.rules, args.output, args.mapping)

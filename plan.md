@@ -92,11 +92,11 @@ Published Fabric Ontology item  → Explorer / Power BI / Real-Time Dashboards
     - Current executable: `uv run python -m generate.create_ontology`, which accepts
        SQL/JSON metadata, business rules, and an explicit OWL output path. It writes
        an adjacent Turtle serialization and validates the generated RDF/XML with `owlready2`.
-    - Current specific example UDV example outputs
-       `out/ontologies/example_udv_specific/example_udv_specific_ontology.owl`,
-       `out/ontologies/example_udv_specific/example_udv_specific_ontology.ttl`, and
-       `out/ontologies/example_udv_specific/example_udv_specific_ontology_mapping.json` from
-       `inputs/lakehouse_tables/example_udv_specific_tables.txt` and
+    - Current specific example storage example outputs
+       `out/ontologies/example_storage_specific/example_storage_specific_ontology.owl`,
+       `out/ontologies/example_storage_specific/example_storage_specific_ontology.ttl`, and
+       `out/ontologies/example_storage_specific/example_storage_specific_ontology_mapping.json` from
+       `inputs/lakehouse_tables/example_storage_specific_tables.txt` and
        `out/business_rules/business_rules_specific.md`.
        Ontology labels are business-friendly; exact source identities remain in provenance and mapping.
 
@@ -196,7 +196,7 @@ se-fabric-ontology-builder-accelerator/
 - Author `ontology-instructions.md`; implement LLM enrichment producing structured JSON → serializer.
 - Produce `ontology.ttl` + `ontology.owl` + `mapping.json` (provenance).
 - **Exit**: canonical RDF/OWL for the example, human-reviewable, with provenance retained;
-   the current example UDV fixture produces 100 table classes, 2,194 datatype properties,
+   the current example storage fixture produces 100 table classes, 2,194 datatype properties,
    and 64 object properties and loads successfully with `owlready2==0.51`.
 
 ### Phase 3 — Validation
@@ -216,16 +216,16 @@ se-fabric-ontology-builder-accelerator/
 - **Tests to complete**: golden files plus focused cases for ID/name collisions, XSD fallback, composite PK order,
    display-property selection, invalid endpoints, and API schema drift.
 - **Deferred**: grouped composite FKs, time-series bindings, inheritance, and junction/n-ary relationships.
-- **Current evidence**: the specific example UDV fixture produces 31 entity types, 496 properties, 64 relationship
+- **Current evidence**: the specific example storage fixture produces 31 entity types, 496 properties, 64 relationship
    types, 31 DataBindings, 64 Contextualizations, and 192 definition parts deterministically.
-- **Exit**: `out/ontology-definition/example_udv_specific/` is reproducible; decoded parts match the documented Preview
+- **Exit**: `out/ontology-definition/example_storage_specific/` is reproducible; decoded parts match the documented Preview
    schema; the API envelope passes a Fabric `create`/`updateDefinition` round-trip in a development workspace.
 
 ### Phase 5 — Publisher & end-to-end
 - **Implemented**: Fabric REST client using `DefaultAzureCredential`; local envelope validation; deterministic
    Fabric item-name normalization; paginated exact-name resolution; create-or-update; explicit item-ID update;
    LRO polling and create-result retrieval; transient retries; configurable timeout/polling; and offline dry-run.
-- **Live evidence**: created and then explicitly updated `example_UDV_Specific_Ontology` in the configured development
+- **Live evidence**: created and then explicitly updated `example_storage_Specific_Ontology` in the configured development
    workspace from the 192-part `out/ontology-definition-specific` envelope. The live importer confirmed that
    source-table discriminators must be serialized first and entity-key value types are limited to `String`/`BigInt`.
 - `ontobuilder run` chains all stages from `config/accelerator.yaml`.

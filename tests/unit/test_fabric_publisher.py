@@ -60,7 +60,7 @@ def write_definition(root: Path) -> Path:
 
 class FabricOntologyPublisherTests(TestCase):
     def test_fabric_item_name_normalizes_and_limits_names(self) -> None:
-        self.assertEqual(fabric_item_name("example UDV Specific Ontology"), "example_UDV_Specific_Ontology")
+        self.assertEqual(fabric_item_name("example storage Specific Ontology"), "example_storage_Specific_Ontology")
         self.assertEqual(fabric_item_name("123 ontology"), "Ontology_123_ontology")
         self.assertLess(len(fabric_item_name("Ontology " + "x" * 100)), 90)
 

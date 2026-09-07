@@ -326,10 +326,10 @@ definition parts:
 
 ```powershell
 uv run transform-ontology `
-	--ontology out/ontologies/example_udv_specific/example_udv_specific_ontology.owl `
-	--mapping out/ontologies/example_udv_specific/example_udv_specific_ontology_mapping.json `
+	--ontology out/ontologies/example_storage_specific/example_storage_specific_ontology.owl `
+	--mapping out/ontologies/example_storage_specific/example_storage_specific_ontology_mapping.json `
 	--output-dir out/ontology-definition-specific `
-	--display-name "example UDV Specific Ontology"
+	--display-name "example storage Specific Ontology"
 ```
 
 Workspace and lakehouse IDs default to the `fabric` section of
@@ -385,8 +385,8 @@ retries transient HTTP `408`, `429`, `502`, `503`, and `504` responses.
 Fabric Ontology item names must start with a letter, contain only letters,
 numbers, and underscores, and be shorter than 90 characters. The publisher
 normalizes the requested name deterministically and updates the in-memory
-`.platform` metadata to match. For example, `UDV Specific Ontology` is
-published as `UDV_Specific_Ontology`. Readable RDF labels and exact source
+`.platform` metadata to match. For example, `storage Specific Ontology` is
+published as `storage_Specific_Ontology`. Readable RDF labels and exact source
 identifiers are not modified.
 
 Current relationship contextualization supports direct, single-column foreign
