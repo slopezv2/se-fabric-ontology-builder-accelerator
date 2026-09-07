@@ -1,0 +1,25 @@
+# Copy this file to config/accelerator.yaml and replace the placeholders.
+# config/accelerator.yaml is gitignored so workspace-specific IDs stay local.
+
+fabric:
+  workspace: null # Required: Fabric workspace GUID.
+  notebook: null  # Required for extraction: Fabric notebook GUID.
+  lakehouse: null # Required for extraction and bindings: Fabric lakehouse GUID.
+
+extract:
+  # These IDs may be omitted when the corresponding fabric values above are set.
+  metadata_file: "Files/raw_metadata/metadata.json"
+  local_output: "inputs/lakehouse_tables/metadata.json"
+  tables:
+    - "<catalog>.<schema>.<table>"
+  timeout_seconds: 1800
+  poll_interval_seconds: 5
+
+publish:
+  # workspace_id: null                     # Optional; defaults to fabric.workspace.
+  # item_id: "<fabric-ontology-item-id>"  # Optional; updates this item directly.
+  # display_name: "Example_Ontology"      # Optional; otherwise read from .platform.
+  # description: "Generated ontology"     # Optional item description.
+  timeout_seconds: 1800
+  poll_interval_seconds: 5
+  max_retries: 5

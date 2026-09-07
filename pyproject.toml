@@ -1,0 +1,38 @@
+[[tool.uv.index]]
+name = "microsoft"
+url = "https://packagefeedproxy.microsoft.io/pypi/simple"
+default = true
+
+[project]
+name = "se-fabric-ontology-builder-accelerator"
+version = "0.1.0"
+description = "Accelerator to produce Ontologies in Microsoft Fabric"
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "slopezv2", email = "sebaslv13@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "azure-identity>=1.25.0",
+    "httpx>=0.28.1",
+    "pyyaml>=6.0.2",
+    "owlready2==0.51.0",
+    "rdflib>=7.6.0",
+]
+
+[project.scripts]
+se-fabric-ontology-builder-accelerator = "se_fabric_ontology_builder_accelerator:main"
+extract-metadata = "cli.extract_metadata:main"
+fabric-token = "cli.get_fabric_token:main"
+transform-ontology = "cli.transform_ontology:main"
+publish-ontology = "cli.publish_ontology:main"
+
+[build-system]
+requires = ["uv_build>=0.12.9,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
