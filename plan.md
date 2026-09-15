@@ -109,9 +109,11 @@ Published Fabric Ontology item  → Explorer / Power BI / Real-Time Dashboards
        mapping JSON as the physical binding authority for source schemas, tables, columns, ordered PKs, and FK endpoints.
     - Assign stable positive signed 64-bit IDs (SHA-256 of IRI, masked to `2^63 - 1`, emitted as decimal strings)
        for entity types, properties, and relationship types; fail on collisions.
-   - `owl:Class` → `EntityTypes/{id}/definition.json` (name sanitized to Fabric regex; `entityIdParts` from PK;
+      - `owl:Class` → `EntityTypes/{id}/definition.json` (name projected from the exact source table identifier and
+         sanitized only when required by the Fabric regex; `entityIdParts` from PK;
        `displayNamePropertyId` from a name/description field, then PK, then first property).
-   - Datatype property → entity `properties[]`; XSD→value-type map
+      - Datatype property → entity `properties[]`, preserving the exact source column identifier as its Fabric name
+         unless compatibility normalization is required; XSD→value-type map
      (`xsd:string→String`, `xsd:boolean→Boolean`, `xsd:dateTime→DateTime`, `xsd:integer/long→BigInt`,
        `xsd:double/decimal/float→Double`, unknown→`untypedProperties`/`Any`).
    - `owl:ObjectProperty` → `RelationshipTypes/{id}/definition.json` (source/target entity type ids from domain/range).

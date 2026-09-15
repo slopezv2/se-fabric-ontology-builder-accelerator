@@ -177,8 +177,11 @@ When proposing or validating downstream Fabric names:
   whitespace, hyphens, punctuation, and path separators to `_`; remove
   diacritics; prefix `Ontology_` when the result does not start with a letter.
 - Entity type, property, and relationship names must match
-  `^[A-Za-z][A-Za-z0-9_-]{0,127}$`. Prefer deterministic PascalCase names for
-  these definition members.
+  `^[A-Za-z][A-Za-z0-9_-]{0,127}$`. Derive entity and property names from exact
+  source table and column identifiers, and relationship names from exact source
+  constraint names when available. Never substitute an English or translated
+  business label. Preserve valid names exactly and normalize only when needed
+  for Fabric compatibility.
 - Normalize first, then resolve collisions within the relevant scope by adding
   `_` plus a stable hash derived from the full source IRI. Never use encounter
   order, random UUIDs, or numeric counters for collision suffixes.

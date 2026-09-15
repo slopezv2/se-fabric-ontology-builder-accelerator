@@ -344,6 +344,12 @@ adjacent mapping JSON is authoritative for Lakehouse schemas, tables, columns,
 ordered primary keys, and foreign-key bindings. Transformation fails when the
 two inputs disagree or a source reference cannot be resolved.
 
+Fabric entity and property names are projected from exact source table and
+column identifiers, not from translated business labels. Valid source names
+are preserved exactly; only Fabric-incompatible characters, invalid leading
+characters, excessive length, and collisions are normalized deterministically.
+English business labels remain available as semantic descriptions.
+
 The specific fixture produces 31 entity types, 496 properties, 64 relationship
 types, 31 DataBindings, 64 Contextualizations, and 192 API definition parts.
 Fabric only accepts `String` and `BigInt` entity-key properties. The transformer

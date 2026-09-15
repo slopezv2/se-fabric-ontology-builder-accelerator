@@ -120,6 +120,13 @@ Percent-encode or safely encode identifiers in IRIs while preserving the exact
 original identifier in annotations. Do not use random UUIDs. The same input
 identifiers must produce the same IRIs on every run.
 
+Keep translated or English business labels separate from downstream identity.
+Fabric entity and property names must be derived from exact source table and
+column identifiers, and relationship names from exact source constraint names
+when available. Preserve valid source names exactly and normalize only when a
+Fabric-incompatible character, leading character, length, or collision requires
+it.
+
 For every table class, include annotations containing:
 
 - Fully qualified source table name.

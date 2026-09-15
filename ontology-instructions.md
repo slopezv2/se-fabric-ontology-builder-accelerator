@@ -15,8 +15,13 @@ separate deterministic projection.
 - Fabric item names must match `^[A-Za-z][A-Za-z0-9_]{0,88}$`.
 - Fabric entity, property, and relationship names must match
 	`^[A-Za-z][A-Za-z0-9_-]{0,127}$`.
-- Normalize Fabric names deterministically and use a stable source-IRI hash for
-	collisions or truncation. Never use random IDs or encounter-order suffixes.
+- Derive Fabric entity and property names from exact source table and column
+	identifiers, not from translated or English business labels. Preserve valid
+	source names exactly; normalize only incompatible characters, invalid leading
+	characters, excessive length, and collisions.
+- Derive relationship names from exact source constraint names when available.
+	Use a stable source-IRI hash for collisions or truncation. Never use random
+	IDs or encounter-order suffixes.
 
 ## Fabric identity compatibility
 

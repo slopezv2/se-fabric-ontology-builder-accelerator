@@ -57,10 +57,11 @@ def stable_uuid(value: str) -> str:
 
 
 def fabric_name(value: str, fallback: str = "Generated") -> str:
-    """Convert a label to a deterministic Fabric-compatible identifier."""
+    """Preserve a source name when valid, normalizing only for Fabric compatibility."""
+    if re.fullmatch(r"[A-Za-z][A-Za-z0-9_-]{0,127}", value):
+        return value
     ascii_value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
-    words = re.findall(r"[A-Za-z0-9]+", ascii_value)
-    name = "".join(word[:1].upper() + word[1:] for word in words) or fallback
+    name = re.sub(r"[^A-Za-z0-9_-]+", "_", ascii_value).strip("_-") or fallback
     if not name[0].isalpha():
         name = f"N{name}"
     if len(name) > 128:
@@ -204,7 +205,7 @@ def transform(config: TransformConfig) -> dict[str, int]:
             if len(ranges) != 1:
                 raise ValueError(f"Expected one RDF range for '{property_iri}', found {ranges}")
             property_name = _unique_name(
-                fabric_name(field.get("business_name") or field["source_name"], "Property"),
+                fabric_name(field["source_name"], "Property"),
                 field["property_iri"],
                 property_names[source_table],
             )
@@ -235,7 +236,7 @@ def transform(config: TransformConfig) -> dict[str, int]:
 
         display_field = _display_property(table_fields, primary_key)
         entity_name = _unique_name(
-            fabric_name(table.get("business_name") or source_table.rsplit(".", 1)[-1], "Entity"),
+            fabric_name(source_table.rsplit(".", 1)[-1], "Entity"),
             table["class_iri"],
             entity_names,
         )
@@ -308,7 +309,7 @@ def transform(config: TransformConfig) -> dict[str, int]:
 
         relationship_id = allocate(relationship["property_iri"])
         relationship_name = _unique_name(
-            fabric_name(relationship.get("constraint") or relationship.get("business_name"), "Relationship"),
+            fabric_name(relationship["constraint"], "Relationship"),
             relationship["property_iri"],
             relationship_names,
         )
